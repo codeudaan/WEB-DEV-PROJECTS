@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Calculator</title>
+  <style>
+    body {
+      background: #0f172a;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Arial;
+    }
+
+    .calculator {
+      background: #1e293b;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px #38bdf8;
+    }
+
+    #display {
+      width: 100%;
+      height: 50px;
+      margin-bottom: 10px;
+      font-size: 20px;
+      text-align: right;
+      padding: 5px;
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    button {
+      padding: 15px;
+      font-size: 18px;
+      cursor: pointer;
+      background: #334155;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background: #38bdf8;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="calculator">
+    <input type="text" class="typetext" id="display" disabled>
+    <div class="buttons">
+      <button>7</button>
+      <button>8</button>
+      <button>9</button>
+      <button>/</button>
+
+      <button>4</button>
+      <button>5</button>
+      <button>6</button>
+      <button>*</button>
+
+      <button>1</button>
+      <button>2</button>
+      <button>3</button>
+      <button>-</button>
+
+      <button>0</button>
+      <button>.</button>
+      <button>=</button>
+      <button>+</button>
+
+      <button id="clear">C</button>
+    </div>
+  </div>
+
+  <script>
+    let display = document.getElementById("display");
+    let buttons = document.querySelectorAll("button");
+
+    let currentInput = "";
+
+    buttons.forEach(button => {
+      button.addEventListener("click", function () {
+        let value = button.innerText;
+        if (value === "=") {
+          try {
+            currentInput = eval(currentInput);
+            display.value = currentInput;
+          }
+          catch {
+            display.value = "bro_of_errors";
+          }
+        }
+        else if (value === "C") {
+          currentInput = "";
+          display.value = "";
+        }
+        else {
+          currentInput += value;
+          display.value = currentInput;
+        }
+      });
+
+
+    });
+  </script>
+</body>
+
+</html>
